@@ -1,4 +1,85 @@
+/* GERAL */
 * {
     margin:0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background-color: #232121;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+/* Header */
+
+header {
+    border-bottom: 1px solid #333;
+
+    background-color: rgb(4, 126, 86);
+    padding: 1rem 2rem;
+    color: #fdfdfd;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-height: 4rem;
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#search-input {
+    background-color: #fdfdfd;
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem;
+    color: #333;
+    width: 20rem;
+    font-size: 1rem;
+}
+
+#export-notes-btn, #add-note-btn {
+    background-color: #fdfdfd;
+    border: 1px solid #fdfdfd;
+    border-radius: 4px;
+    padding: 0.5rem 1.5rem;
+    color: #333;
+    opacity: 1;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#export-notes-btn:hover, #add-note-btn:hover { 
+    background-color: rgb(4, 126, 86);
+    color: #fdfdfd;
+    transition: 0.5s;
+    opacity: 1;
+}
+
+/* new Note form */
+
+#add-note-container {
+    display: flex;
+    width: 30rem;
+    margin: 1rem auto 0;
+    gap: 0.5rem;
+}
+
+#add-note-container input,
+#add-note-container button { 
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+#add-note-container input {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #fdfdfd;
+    font-size: 1rem;
 }

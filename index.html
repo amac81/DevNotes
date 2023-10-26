@@ -19,22 +19,22 @@
     <header>
         <h1>DevNotes</h1>
         <div id="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar...">
             <i class="bi bi-search"></i>
-            <input type="text" id="search-input" placeholder="Pesquisar nota">
         </div>
-        <button id="export-notes">
+        <button id="export-notes-btn">
             Exportar CSV
             <i class="bi bi-download"></i>
         </button>
     </header>
     <div id="add-note-container">
         <input type="text" id="note-content" placeholder="O que deseja anotar?">
-        <button class="add-note"><i class="bi bi-plus-lg"></i></button>
+        <button id = "add-note-btn" class="add-note"><i class="bi bi-plus-lg"></i></button>
     </div>
     <div id="notes-container">
         <!-- BEGIN: div to help css create -->
-        <div class="note">
-            <textarea placeholder="Adicione texto"></textarea>
+        <div class="note"> 
+            <textarea placeholder="Adicione texto" id="note-text"></textarea>
             <i class="bi bi-pin"></i>
             <i class="bi bi-x-lg"></i>
             <i class="bi bi-file-earmark-plus"></i>
