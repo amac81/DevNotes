@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev Notes</title>
+     <!-- Bootstrap Icons -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" 
+          integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" 
+          crossorigin="anonymous"
+    />
     <!-- Project CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- Project JS -->
     <script src="js/scripts.js" defer></script>
 </head>
 <body>
-    <h1>teste</h1>
+    <header>
+        <h1>DevNotes</h1>
+        <div id="search-container">
+            <i class="bi bi-search"></i>
+            <input type="text" id="search-input" placeholder="Pesquisar nota">
+        </div>
+        <button id="export-notes">
+            Exportar CSV
+            <i class="bi bi-download"></i>
+        </button>
+    </header>
+    <div id="add-note-container">
+        <input type="text" id="note-content" placeholder="O que deseja anotar?">
+        <button class="add-note"><i class="bi bi-plus-lg"></i></button>
+    </div>
+    <div id="notes-container">
+        <!-- BEGIN: div to help css create -->
+        <div class="note">
+            <textarea placeholder="Adicione texto"></textarea>
+            <i class="bi bi-pin"></i>
+            <i class="bi bi-x-lg"></i>
+            <i class="bi bi-file-earmark-plus"></i>
+        </div>
+        <!-- END: div to help css create -->
+    </div>
 </body>
 </html>
