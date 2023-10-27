@@ -83,3 +83,75 @@ header {
     border: 1px solid #fdfdfd;
     font-size: 1rem;
 }
+
+
+/* Notes */
+
+#notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+.note { 
+    min-height: 200px;
+    padding: 1rem;
+    /*transform: rotate(-4deg);*/
+    border-radius: 0px 20px 0px 20px;
+    background-color: #f8eb75;
+    position: relative;
+}
+
+.note:hover > i {
+    opacity: 1;
+} 
+
+.note textarea {
+    background-color:transparent;
+    resize: none;
+    color:red;
+    border:none;
+    height: 100%;
+    width: 90%;    
+    outline: none;
+}
+
+.note .bi-pin {
+    position: absolute;
+    right: 12px;
+    font-size: 18px;
+    top: 10px;
+    transform: rotate(25deg);  
+    transition: 0.3s;  
+    cursor: pointer;
+} 
+
+.note .bi-pin:hover{
+    color: red;
+    font-size: 22px;
+    transition: 0.3s;  
+    transform: rotate(0deg);  
+}
+
+.note .bi-trash,
+.note .bi-file-earmark-plus {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 5px;
+    transition: 0.3s;  
+    cursor: pointer;
+    opacity: 0;
+}
+
+.note .bi-file-earmark-plus {
+    bottom: 35px;
+}
+
+.note .bi-trash:hover,
+.note .bi-file-earmark-plus:hover {
+    transition: 0.3s;  
+    color: red;
+    font-size: 18px;
+}
