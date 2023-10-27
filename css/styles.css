@@ -8,18 +8,20 @@
 
 body {
     background-color: #232121;
+    color: #333;
 }
 
 textarea:focus, input:focus{
     outline: none;
 }
 
+
 /* Header */
 
 header {
     border-bottom: 1px solid #333;
-
-    background-color: rgb(4, 126, 86);
+    /*background-color: rgb(4, 126, 86);*/
+    background-color:#ccc;
     padding: 1rem 2rem;
     color: #fdfdfd;
     display: flex;
@@ -35,7 +37,7 @@ header {
 }
 
 #search-input {
-    background-color: #fdfdfd;
+    background-color: fdfdfd;
     border-radius: 4px;
     border: none;
     padding: 0.5rem;
@@ -56,7 +58,7 @@ header {
 }
 
 #export-notes-btn:hover, #add-note-btn:hover { 
-    background-color: rgb(4, 126, 86);
+    background-color: #ccc;
     color: #fdfdfd;
     transition: 0.5s;
     opacity: 1;
@@ -128,10 +130,9 @@ header {
 } 
 
 .note .bi-pin:hover{
-    color: red;
+    color: #ff0000;
     font-size: 22px;
     transition: 0.3s;  
-    transform: rotate(0deg);  
 }
 
 .note .bi-trash,
@@ -152,6 +153,23 @@ header {
 .note .bi-trash:hover,
 .note .bi-file-earmark-plus:hover {
     transition: 0.3s;  
-    color: red;
+    color:  #ff0000;
     font-size: 18px;
+}
+
+.note.fixed {
+    box-shadow: 3px 5px 12px 5px#ccc;
+}
+
+.note.fixed .bi-pin{
+    color: #ff0000;     
+    font-size: 22px;     
+    transform: rotate(0deg);  
+}
+
+.note.fixed .bi-pin:hover{
+    transition: 0.3s;  
+    color: #333;
+    font-size: 18px;
+    transform: rotate(25deg); 
 }

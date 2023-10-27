@@ -1,5 +1,6 @@
 // seleccionar elementos
 const exportNotesButton = document.querySelector("#export-notes-btn");
+const allNotes = document.querySelector("#notes-container");
 
 
 // Funções
@@ -10,5 +11,24 @@ const exportNotesButton = document.querySelector("#export-notes-btn");
 exportNotesButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    console.log("export-notes-btn CLICK");
+
+});
+
+
+//Note item buttons click event
+document.addEventListener("click", (elem) => {
+    const targetElement = elem.target;
+    const parentElement = targetElement.closest("div");
+    
+    
+    if(parentElement.classList.contains("note") &&targetElement.classList.contains("bi-pin") ) {
+        console.log(parentElement)
+        parentElement.classList.toggle("fixed");
+    }
+
+    //if(parentElement.classList.contains("fixed")) {
+        //toggleNote();
+        
+    //}
+
 });
