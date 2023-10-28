@@ -84,7 +84,7 @@ const getElementHexBgColor = (elem) => {
 
 const changeNoteColor = (note) => {
     const availableColors = ["#f8eb75", "#c5f4fa", "#c6ff91", "#ffffcc", "#ffb3ff"];
-   
+
     const bgColor = getElementHexBgColor(note).toString();
     let colorIndex = availableColors.indexOf(bgColor);
    
@@ -95,8 +95,13 @@ const changeNoteColor = (note) => {
             colorIndex = 0;
         }
         note.style.backgroundColor = availableColors[colorIndex];
+        updateNoteLocalStorage(note.id, availableColors[colorIndex]);
     }
 };
+
+
+
+// Local Storage
 
 const loadFromLocalStorage  = ()=> {
     const allNotes = getAllNotesFromLocalStorage();
@@ -106,7 +111,6 @@ const loadFromLocalStorage  = ()=> {
     });
 };
 
-// Local Storage
 const getAllNotesFromLocalStorage = () => {
     const allNotes = JSON.parse(localStorage.getItem("allNotes") ) || [];
     return allNotes;
@@ -117,6 +121,25 @@ const addNoteToContainerAndLocalStorage = (note) => {
     allNotes.push(note);
     localStorage.setItem("allNotes", JSON.stringify(allNotes));
 };
+
+
+const updateNoteLocalStorage  = (id, color = "", content =  "", fixed = "") => {
+    const allNotes = getAllNotesFromLocalStorage();
+
+    //map does not return data, it changes the original data
+    allNotes.map((note) => note.id == id
+        ? (
+           (color != "" ? note.color = color : null), 
+           (content != "" ? note.content = content : null), 
+           (fixed != "" ? note.fixed = fixed : null)
+        )
+        : null
+    );
+    
+    //replace local storage key allNotes with the allNotes changed
+    localStorage.setItem("allNotes", JSON.stringify(allNotes));
+   
+ };
 
 
 // Eventos
