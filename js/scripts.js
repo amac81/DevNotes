@@ -107,7 +107,8 @@ const loadFromLocalStorage  = ()=> {
     const allNotes = getAllNotesFromLocalStorage();
 
     allNotes.forEach((note) => {
-        noteElementCreate(note.id, note.color, note.content, note.fixed, false);
+        let fixed = note.fixed === "true" ? true : false; 
+        noteElementCreate(note.id, note.color, note.content, fixed, false);
     });
 };
 
@@ -125,6 +126,8 @@ const addNoteToContainerAndLocalStorage = (note) => {
 
 const updateNoteLocalStorage  = (id, color = "", content =  "", fixed = "") => {
     const allNotes = getAllNotesFromLocalStorage();
+
+    console.log(fixed);
 
     //map does not return data, it changes the original data
     allNotes.map((note) => note.id == id
@@ -157,6 +160,11 @@ document.addEventListener("click", (elem) => {
     if(parentElement){
         if(parentElement.classList.contains("note") &&targetElement.classList.contains("bi-pin") ) {
             parentElement.classList.toggle("fixed");
+
+            const fixed = parentElement.classList.contains("fixed");
+            const id = parentElement.getAttribute("id");
+
+            updateNoteLocalStorage(id,"", "", fixed.toString());
         }
     }
 
