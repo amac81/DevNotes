@@ -92,9 +92,9 @@ header {
 
 #notes-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 230px);
     padding: 2rem;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .note { 
@@ -102,7 +102,7 @@ header {
     padding: 1rem;
     /*transform: rotate(-4deg);*/
     border-radius: 0px 20px 0px 20px;
-    background-color: #f8eb75;
+    background-color: #ffffcc;
     position: relative;
 }
 
@@ -113,7 +113,7 @@ header {
 .note textarea {
     background-color:transparent;
     resize: none;
-    color:red;
+    color:#333;
     border:none;
     height: 100%;
     width: 90%;    

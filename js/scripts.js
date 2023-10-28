@@ -9,25 +9,51 @@ const addNoteBtn = document.querySelector("#add-note-btn");
 const addNote = () => {
     const noteObj = {
         id: generateId(),
+        color: "#ffffcc",
         content: noteInput.value,
         fixed: false,
     };
 
-    const noteElement = noteElementCreate(noteObj.id, noteObj.content);
+    const noteElement = noteElementCreate(noteObj.id, noteObj.color, noteObj.content);
     notesContainer.appendChild(noteElement);
+    
 };
 
 const generateId = () => {
     return Math.floor(Math.random() * 5000);
 };
 
-const noteElementCreate = (id, content, fixed) => {
+const noteElementCreate = (id, color, content, fixed) => {
+    //it possible to create empty content notes
+
     const elem = document.createElement("div");
+    elem.setAttribute("id", id);
+
+    elem.style.backgroundColor = color;
     elem.classList.add("note");
     const textArea = document.createElement("textarea");
+    textArea.setAttribute("id", "ta"+id);
+
     textArea.value = content;
     textArea.placeholder = "Adicione texto...";
     elem.appendChild(textArea);
+
+    //icons
+    const pinIcon = document.createElement("i");
+    pinIcon.classList.add("bi","bi-pin");
+    elem.appendChild(pinIcon);
+
+    const paletteIcon = document.createElement("i");
+    paletteIcon.classList.add("bi","bi-palette");
+    elem.appendChild(paletteIcon);
+
+    const fileEarmarkPlusIcon = document.createElement("i");
+    fileEarmarkPlusIcon.classList.add("bi","bi-file-earmark-plus");
+    elem.appendChild(fileEarmarkPlusIcon);
+    
+    const trashIcon = document.createElement("i");
+    trashIcon.classList.add("bi","bi-trash");
+    elem.appendChild(trashIcon);
     
     return elem;
 };
