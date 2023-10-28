@@ -135,7 +135,7 @@ header {
     font-size: 22px;
     transition: 0.3s;  
 }
-
+.note .bi-palette,
 .note .bi-trash,
 .note .bi-file-earmark-plus {
     position: absolute;
@@ -147,14 +147,23 @@ header {
     opacity: 0;
 }
 
+.note .bi-palette {
+    bottom: 60px;
+}
+
 .note .bi-file-earmark-plus {
     bottom: 35px;
 }
 
-.note .bi-trash:hover,
-.note .bi-file-earmark-plus:hover {
+.note .bi-trash:hover {
     transition: 0.3s;  
     color:  #ff0000;
+    font-size: 18px;
+}
+
+.note .bi-file-earmark-plus:hover,
+.note .bi-palette:hover {
+    transition: 0.3s;  
     font-size: 18px;
 }
 
