@@ -183,3 +183,79 @@ header {
     font-size: 18px;
     transform: rotate(25deg); 
 }
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 0;
+        margin-top: -20px !important;
+        max-width: 100%;
+        display: flex;
+        position:fixed;
+        overflow-y:scroll;
+        min-height: 40px;
+        z-index: 1;       
+    }
+
+    h1 {
+        font-size: 1rem;
+        padding-left: 5px;
+    }
+
+    #add-note-container {
+        width: auto;
+        padding: 1rem;
+        padding-top: 3rem;
+        
+        margin-top: 20px;
+
+    }
+
+    #search-container{
+       max-width: 40%;
+    }
+
+    #search-container i {
+        padding: 0;
+        margin: 0;
+    }
+
+    #search-container input{
+       padding: 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    #export-notes-btn{
+        font-size: 0.7rem;
+        max-width: 20%;    
+        padding: 0.2rem;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    #notes-container {
+        width: 100%;
+        display:block;
+        padding:1rem;
+    }
+
+    .note {
+        margin-bottom: 1.5rem;
+    }
+    
+}
+
+@media (max-width: 500px) {       
+  
+}
+
+@media (max-width: 780px) {       
+ 
+}
+
+@media (max-width: 968px) {       
+   
+}
