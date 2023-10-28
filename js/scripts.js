@@ -14,16 +14,14 @@ const addNote = () => {
         fixed: false,
     };
 
-    const noteElement = noteElementCreate(noteObj.id, noteObj.color, noteObj.content);
-    notesContainer.appendChild(noteElement);
-    
+    noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false, true);    
 };
 
 const generateId = () => {
     return Math.floor(Math.random() * 5000);
 };
 
-const noteElementCreate = (id, color, content, fixed) => {
+const noteElementCreate = (id, color, content, fixed = false, save = false) => {
     //it possible to create empty content notes
 
     const elem = document.createElement("div");
@@ -54,8 +52,19 @@ const noteElementCreate = (id, color, content, fixed) => {
     const trashIcon = document.createElement("i");
     trashIcon.classList.add("bi","bi-trash");
     elem.appendChild(trashIcon);
+
+    // Local Storage data
+    if(fixed) {
+        elem.classList.add("fixed")
+    }
     
-    return elem;
+    //note.id, note.color, note.content, note.fixed, false);
+    if(save) {
+        addNoteToContainerAndLocalStorage({id: id, color: color, content: content, fixed: fixed})
+    }
+    
+    notesContainer.appendChild(elem);
+    
 };
 
 //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
@@ -89,6 +98,27 @@ const changeNoteColor = (note) => {
     }
 };
 
+const loadFromLocalStorage  = ()=> {
+    const allNotes = getAllNotesFromLocalStorage();
+
+    allNotes.forEach((note) => {
+        noteElementCreate(note.id, note.color, note.content, note.fixed, false);
+    });
+};
+
+// Local Storage
+const getAllNotesFromLocalStorage = () => {
+    const allNotes = JSON.parse(localStorage.getItem("allNotes") ) || [];
+    return allNotes;
+}
+
+const addNoteToContainerAndLocalStorage = (note) => {
+    const allNotes = getAllNotesFromLocalStorage();
+    allNotes.push(note);
+    localStorage.setItem("allNotes", JSON.stringify(allNotes));
+};
+
+
 // Eventos
 exportNotesButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -118,3 +148,7 @@ document.addEventListener("click", (elem) => {
 
 
 addNoteBtn.addEventListener("click", () => addNote());
+
+
+// Inicialization
+loadFromLocalStorage();
