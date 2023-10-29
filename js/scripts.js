@@ -1,11 +1,11 @@
-// seleccionar elementos
+// select elements
 const exportNotesButton = document.querySelector("#export-notes-btn");
 const notesContainer = document.querySelector("#notes-container");
 
 const noteInput = document.querySelector("#note-content");
 const addNoteBtn = document.querySelector("#add-note-btn");
 
-// Funções
+// functions
 const addNote = () => {
     const notes = getNotes();
 
@@ -16,8 +16,13 @@ const addNote = () => {
         fixed: false,
     };
 
-    const noteElemet = noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false, true);  
-    notesContainer.appendChild(noteElemet); 
+    //save to local storage
+    notes.push(noteObj);
+    saveNotes(notes);
+    showNotes();
+
+    const noteElemet = noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false);  
+    //notesContainer.appendChild(noteElemet); 
     noteInput.value = ""; 
 };
 
@@ -25,7 +30,7 @@ const generateId = () => {
     return Math.floor(Math.random() * 5000);
 };
 
-const noteElementCreate = (id, color, content, fixed = false, save = false) => {
+const noteElementCreate = (id, color, content, fixed = false) => {
    
     //it possible to create empty content notes
 
@@ -62,11 +67,6 @@ const noteElementCreate = (id, color, content, fixed = false, save = false) => {
     if(fixed) {
         elem.classList.add("fixed")
     }
-    
-    //note.id, note.color, note.content, note.fixed, false);
-    if(save) {
-        addNoteToContainerAndLocalStorage({id: id, color: color, content: content, fixed: fixed})
-    }
 
     if(fixed){
         elem.classList.add("fixed");
@@ -84,9 +84,14 @@ const noteElementCreate = (id, color, content, fixed = false, save = false) => {
         changeNoteColor(id);
     });
 
-     //Delete note
+    //Delete note
     elem.querySelector(".bi-trash").addEventListener("click", () => {
         deleteNote(id, elem);
+    });
+
+    //Duplicate note
+    elem.querySelector(".bi-file-earmark-plus").addEventListener("click", () => {
+        duplicateNote(id);
     });
 
     return elem;
@@ -120,7 +125,6 @@ const changeNoteColor = (id) => {
     }
 };  
 
-
 const deleteNote = (id, elem) => {
     const notesToKeep = getNotes().filter((note) => note.id != id);
     
@@ -128,6 +132,24 @@ const deleteNote = (id, elem) => {
     notesContainer.removeChild(elem);
 
     saveNotes(notesToKeep);
+};  
+
+const duplicateNote = (id) => {
+    const allNotes = getNotes();
+    const originalNote = allNotes.filter((note) => note.id === id)[0];
+   
+    const noteObj = {
+        id: generateId(),
+        color: originalNote.color,
+        content: originalNote.content,
+        fixed: false,
+    };
+
+    allNotes.push(noteObj);
+    saveNotes(allNotes);
+
+    const noteElemet = noteElementCreate(generateId(), originalNote.color, originalNote.content, false);  
+  //  notesContainer.appendChild(noteElemet); 
 };  
 
 
@@ -180,7 +202,6 @@ const addNoteToContainerAndLocalStorage = (note) => {
     localStorage.setItem("allNotes", JSON.stringify(allNotes));
 };
 
-
 const saveNotes  = (notes) => {
 
     //replace local storage key allNotes with the allNotes changed
@@ -189,40 +210,10 @@ const saveNotes  = (notes) => {
    
  };
 
-
 // Eventos
 exportNotesButton.addEventListener("click", (e) => {
     e.preventDefault();
 });
-
-
-//Note item buttons click event
-/*
-document.addEventListener("click", (elem) => {
-    const targetElement = elem.target;
-    const parentElement = targetElement.closest("div");
-    
-    //bi-pin button
-    if(parentElement){
-        if(parentElement.classList.contains("note") &&targetElement.classList.contains("bi-pin") ) {
-            parentElement.classList.toggle("fixed");
-
-            const fixed = parentElement.classList.contains("fixed");
-            const id = parentElement.getAttribute("id");
-
-            updateNoteLocalStorage(id,"", "", fixed);
-        }
-    }
-
-  //bi-palette button
-  if(parentElement){
-    if(parentElement.classList.contains("note") &&targetElement.classList.contains("bi-palette") ) {
-        changeNoteColor(parentElement);
-    }
-}
-
-});
-*/
 
 addNoteBtn.addEventListener("click", () => addNote());
 
