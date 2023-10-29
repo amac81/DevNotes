@@ -68,9 +68,68 @@ const noteElementCreate = (id, color, content, fixed = false, save = false) => {
         addNoteToContainerAndLocalStorage({id: id, color: color, content: content, fixed: fixed})
     }
 
+    if(fixed){
+        elem.classList.add("fixed");
+    }
+
+    // Element Events
+
+    //Fixed note
+    elem.querySelector(".bi-pin").addEventListener("click", () => {
+        toggleFixNote(id);
+    });
+
+    //Change color
+    elem.querySelector(".bi-palette").addEventListener("click", () => {
+        changeNoteColor(id);
+    });
+
+     //Delete note
+    elem.querySelector(".bi-trash").addEventListener("click", () => {
+        deleteNote(id, elem);
+    });
+
     return elem;
     
 };
+
+const toggleFixNote = (id) => {
+    const allNotes = getNotes();
+    const targetNote = allNotes.filter((note) => note.id === id)[0];
+    targetNote.fixed = !targetNote.fixed;
+    
+    saveNotes(allNotes);
+};  
+
+const changeNoteColor = (id) => {
+    const allNotes = getNotes();
+    const targetNote = allNotes.filter((note) => note.id === id)[0];
+
+    const availableColors = ["#f8eb75", "#c5f4fa", "#c6ff91", "#ffffcc", "#ffb3ff"];
+    let colorIndex = availableColors.indexOf(targetNote.color);
+   
+    if(colorIndex >= 0 && colorIndex < availableColors.length){
+        colorIndex ++;
+
+        if(colorIndex >= availableColors.length){
+            colorIndex = 0;
+        }
+        
+        targetNote.color = availableColors[colorIndex];
+        saveNotes(allNotes);
+    }
+};  
+
+
+const deleteNote = (id, elem) => {
+    const notesToKeep = getNotes().filter((note) => note.id != id);
+    
+    //remove from DOM
+    notesContainer.removeChild(elem);
+
+    saveNotes(notesToKeep);
+};  
+
 
 //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
@@ -87,22 +146,6 @@ const getElementHexBgColor = (elem) => {
     return hexBgColor;
 }
 
-const changeNoteColor = (note) => {
-    const availableColors = ["#f8eb75", "#c5f4fa", "#c6ff91", "#ffffcc", "#ffb3ff"];
-
-    const bgColor = getElementHexBgColor(note).toString();
-    let colorIndex = availableColors.indexOf(bgColor);
-   
-    if(colorIndex >= 0 && colorIndex < availableColors.length){
-        colorIndex ++;
-
-        if(colorIndex >= availableColors.length){
-            colorIndex = 0;
-        }
-        note.style.backgroundColor = availableColors[colorIndex];
-        updateNoteLocalStorage(note.id, availableColors[colorIndex]);
-    }
-};
 
 const cleanNotesContainer = () => {
     notesContainer.replaceChildren([]);
@@ -138,21 +181,10 @@ const addNoteToContainerAndLocalStorage = (note) => {
 };
 
 
-const updateNoteLocalStorage  = (id, color = "", content =  "", fixed = false) => {
-    const allNotes = getNotes();
+const saveNotes  = (notes) => {
 
-    //map does not return data, it changes the original data
-    allNotes.map((note) => note.id == id
-        ? (
-           (color != "" ? note.color = color : null), 
-           (content != "" ? note.content = content : null), 
-           (note.fixed = fixed)
-        )
-        : null
-    );
-    
     //replace local storage key allNotes with the allNotes changed
-    localStorage.setItem("allNotes", JSON.stringify(allNotes));
+    localStorage.setItem("allNotes", JSON.stringify(notes));
     showNotes();
    
  };
@@ -165,6 +197,7 @@ exportNotesButton.addEventListener("click", (e) => {
 
 
 //Note item buttons click event
+/*
 document.addEventListener("click", (elem) => {
     const targetElement = elem.target;
     const parentElement = targetElement.closest("div");
@@ -189,7 +222,7 @@ document.addEventListener("click", (elem) => {
 }
 
 });
-
+*/
 
 addNoteBtn.addEventListener("click", () => addNote());
 
