@@ -7,6 +7,8 @@ const addNoteBtn = document.querySelector("#add-note-btn");
 
 // Funções
 const addNote = () => {
+    const notes = getNotes();
+
     const noteObj = {
         id: generateId(),
         color: "#ffffcc",
@@ -14,7 +16,9 @@ const addNote = () => {
         fixed: false,
     };
 
-    noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false, true);    
+    const noteElemet = noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false, true);  
+    notesContainer.appendChild(noteElemet); 
+    noteInput.value = ""; 
 };
 
 const generateId = () => {
@@ -22,6 +26,7 @@ const generateId = () => {
 };
 
 const noteElementCreate = (id, color, content, fixed = false, save = false) => {
+   
     //it possible to create empty content notes
 
     const elem = document.createElement("div");
@@ -62,8 +67,8 @@ const noteElementCreate = (id, color, content, fixed = false, save = false) => {
     if(save) {
         addNoteToContainerAndLocalStorage({id: id, color: color, content: content, fixed: fixed})
     }
-    
-    notesContainer.appendChild(elem);
+
+    return elem;
     
 };
 
@@ -99,48 +104,56 @@ const changeNoteColor = (note) => {
     }
 };
 
-
+const cleanNotesContainer = () => {
+    notesContainer.replaceChildren([]);
+}
 
 // Local Storage
 
-const loadFromLocalStorage  = ()=> {
-    const allNotes = getAllNotesFromLocalStorage();
+const showNotes  = ()=> {
+
+    cleanNotesContainer();
+    const allNotes = getNotes();
 
     allNotes.forEach((note) => {
-        let fixed = note.fixed === "true" ? true : false; 
-        noteElementCreate(note.id, note.color, note.content, fixed, false);
+       // let fixed = note.fixed === "true" ? true : false; 
+        const noteElemet = noteElementCreate(note.id, note.color, note.content, note.fixed, false);
+
+        notesContainer.appendChild(noteElemet);
     });
 };
 
-const getAllNotesFromLocalStorage = () => {
-    const allNotes = JSON.parse(localStorage.getItem("allNotes") ) || [];
-    return allNotes;
+const getNotes = () => {
+   const allNotes = JSON.parse(localStorage.getItem("allNotes") ) || [];
+
+   const sortedNotes = allNotes.sort((n1, n2) => (n1.fixed > n2.fixed ? -1 : 1));
+
+   return sortedNotes;
 }
 
 const addNoteToContainerAndLocalStorage = (note) => {
-    const allNotes = getAllNotesFromLocalStorage();
+    const allNotes = getNotes();
     allNotes.push(note);
     localStorage.setItem("allNotes", JSON.stringify(allNotes));
 };
 
 
-const updateNoteLocalStorage  = (id, color = "", content =  "", fixed = "") => {
-    const allNotes = getAllNotesFromLocalStorage();
-
-    console.log(fixed);
+const updateNoteLocalStorage  = (id, color = "", content =  "", fixed = false) => {
+    const allNotes = getNotes();
 
     //map does not return data, it changes the original data
     allNotes.map((note) => note.id == id
         ? (
            (color != "" ? note.color = color : null), 
            (content != "" ? note.content = content : null), 
-           (fixed != "" ? note.fixed = fixed : null)
+           (note.fixed = fixed)
         )
         : null
     );
     
     //replace local storage key allNotes with the allNotes changed
     localStorage.setItem("allNotes", JSON.stringify(allNotes));
+    showNotes();
    
  };
 
@@ -164,7 +177,7 @@ document.addEventListener("click", (elem) => {
             const fixed = parentElement.classList.contains("fixed");
             const id = parentElement.getAttribute("id");
 
-            updateNoteLocalStorage(id,"", "", fixed.toString());
+            updateNoteLocalStorage(id,"", "", fixed);
         }
     }
 
@@ -182,4 +195,4 @@ addNoteBtn.addEventListener("click", () => addNote());
 
 
 // Inicialization
-loadFromLocalStorage();
+showNotes();
