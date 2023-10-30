@@ -22,19 +22,30 @@ textarea:focus, input:focus{
 /* Header */
 
 header {
-    border-bottom: 1px solid #333;
-    /*background-color: rgb(4, 126, 86);*/
+    border-bottom: 3px solid #070606;
+    border-top: 3px solid #070606;
+    margin-top: -20px !important;
     background-color:#ccc;
     padding: 1rem 2rem;
     color: #fdfdfd;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    max-height: 4rem;
+    max-height: 5rem;
+    position:fixed;
+    overflow-y:scroll;
+    z-index: 1;       
+    width: 100%;
 }
 
 #search-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#export-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -86,6 +97,8 @@ header {
     width: 30rem;
     margin: 1rem auto 0;
     gap: 0.5rem;
+    margin-top: 20px;
+    padding-top: 5rem;
 }
 
 #add-note-container input,
@@ -109,7 +122,7 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fill, 230px);
     padding: 2rem;
-    gap: 1.2rem;
+    gap: 2rem;
 }
 
 .note { 

@@ -300,29 +300,18 @@ function exportDataToXML() {
 
     const xmlDoc = document.implementation.createDocument(null, 'data');
     const root = xmlDoc.documentElement;
-    const separator = xmlDoc.createTextNode("\n");
-     
+
     allNotes.forEach(note => {
       const parentElement = xmlDoc.createElement("note");  
       
-      
-  
       for (const key in note) {
         if (note.hasOwnProperty(key)) {
           const element = xmlDoc.createElement(key);       
-          element.appendChild(separator);
-          
           element.textContent = note[key];
           parentElement.appendChild(element);  
-          
-          parentElement.appendChild(separator);        
-
         }
       }
-  
       root.appendChild(parentElement);
-      
-      
     });
   
     const serializer = new XMLSerializer();
