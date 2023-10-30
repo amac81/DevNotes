@@ -265,22 +265,83 @@ const saveNotes  = (notes) => {
     showNotes();
 };
 
+const createDummyLink = (format, content) => {
+    const dummyURLElem = document.createElement("a");
+    
+    if(format === "csv"){
+        dummyURLElem.href = "data:text/csv;charset=utf-8," + encodeURI(content);
+    }
+    else {
+        const xmlBlob = new Blob([content], { type: 'application/xml' });
+        const xmlUrl = URL.createObjectURL(xmlBlob);   
+        dummyURLElem.href = xmlUrl; 
+    } 
+
+    dummyURLElem.target = "_blank";
+    dummyURLElem.download = "myNotes." + format;        
+    dummyURLElem.click();
+};
+
 const exportDataToCSV = () => {
     const allNotes = getNotes();
 
+    //spread and map use
+    const csvString = [
+        ["ID","COLOR_HEX", "CONTENT", "FIXED"],
+        ...allNotes.map((note)=> [note.id, note.color.replace("#",""), note.content,  note.fixed]),
+    ].map((e) => e.join(";")).join("\n");
     
+    createDummyLink("csv", csvString);   
 };
+
+
+function exportDataToXML() {
+    const allNotes = getNotes();
+
+    const xmlDoc = document.implementation.createDocument(null, 'data');
+    const root = xmlDoc.documentElement;
+    const separator = xmlDoc.createTextNode("\n");
+     
+    allNotes.forEach(note => {
+      const parentElement = xmlDoc.createElement("note");  
+      
+      
+  
+      for (const key in note) {
+        if (note.hasOwnProperty(key)) {
+          const element = xmlDoc.createElement(key);       
+          element.appendChild(separator);
+          
+          element.textContent = note[key];
+          parentElement.appendChild(element);  
+          
+          parentElement.appendChild(separator);        
+
+        }
+      }
+  
+      root.appendChild(parentElement);
+      
+      
+    });
+  
+    const serializer = new XMLSerializer();
+    const xmlString = serializer.serializeToString(xmlDoc);
+
+    createDummyLink("xml", xmlString);   
+  }
+
 
 // Events
 
 exportToCSVBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    exportDataToCSV();
+    exportDataToCSV();    
 });
 
 exportToXMLBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    //exportDataToXML();
+    exportDataToXML();   
 });
 
 addNoteBtn.addEventListener("click", () => addNote());
