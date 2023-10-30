@@ -5,7 +5,6 @@ const notesContainer = document.querySelector("#notes-container");
 const noteInput = document.querySelector("#note-content");
 const searchInput = document.querySelector("#search-input");
 const addNoteBtn = document.querySelector("#add-note-btn");
-const searchBtn = document.querySelector("#search-button");
 
 // functions
 const addNote = () => {
@@ -198,7 +197,6 @@ const updateNote = (id, newContent) => {
     saveNotes(allNotes);   
 };
 
-
 const cleanNotesContainer = () => {
     notesContainer.replaceChildren([]);
 }
@@ -240,6 +238,27 @@ const saveNotes  = (notes) => {
    
  };
 
+ const searchNotes = (textToSeach) => {
+    const filteredNotes = getNotes().filter((note) => {
+        const text = note.content.toLowerCase();
+        return text.includes(textToSeach.toLowerCase());
+    }); 
+    
+    if(textToSeach !== "") {
+        cleanNotesContainer();
+        filteredNotes.forEach((note) => {
+            const noteElemet = noteElementCreate(note.id, note.color, note.content, note.fixed);  
+            notesContainer.appendChild(noteElemet);
+        });
+        
+        return;
+    }
+
+    cleanNotesContainer();
+    showNotes();
+};
+
+
 // Events
 exportNotesButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -247,11 +266,9 @@ exportNotesButton.addEventListener("click", (e) => {
 
 addNoteBtn.addEventListener("click", () => addNote());
 
-searchBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    console.log("click em pesquisar");
-    console.log(searchInput.value)
+searchInput.addEventListener("keyup", (e) => {
+    const textToSeach = e.target.value;
+    searchNotes(textToSeach);    
 });
 
 
