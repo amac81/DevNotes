@@ -3,7 +3,9 @@ const exportNotesButton = document.querySelector("#export-notes-btn");
 const notesContainer = document.querySelector("#notes-container");
 
 const noteInput = document.querySelector("#note-content");
+const searchInput = document.querySelector("#search-input");
 const addNoteBtn = document.querySelector("#add-note-btn");
+const searchBtn = document.querySelector("#search-button");
 
 // functions
 const addNote = () => {
@@ -47,19 +49,19 @@ const noteElementCreate = (id, color, content, fixed = false) => {
 
     //icons
     const pinIcon = document.createElement("i");
-    pinIcon.classList.add("bi","bi-pin");
+    pinIcon.classList.add(...["bi","bi-pin"]);
     elem.appendChild(pinIcon);
 
     const paletteIcon = document.createElement("i");
-    paletteIcon.classList.add("bi","bi-palette");
+    paletteIcon.classList.add(...["bi","bi-palette"]);
     elem.appendChild(paletteIcon);
 
     const fileEarmarkPlusIcon = document.createElement("i");
-    fileEarmarkPlusIcon.classList.add("bi","bi-file-earmark-plus");
+    fileEarmarkPlusIcon.classList.add(...["bi","bi-file-earmark-plus"]);
     elem.appendChild(fileEarmarkPlusIcon);
     
     const trashIcon = document.createElement("i");
-    trashIcon.classList.add("bi","bi-trash");
+    trashIcon.classList.add(...["bi","bi-trash"]);
     elem.appendChild(trashIcon);
 
     const saveIcon = document.createElement("i");
@@ -244,6 +246,13 @@ exportNotesButton.addEventListener("click", (e) => {
 });
 
 addNoteBtn.addEventListener("click", () => addNote());
+
+searchBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    console.log("click em pesquisar");
+    console.log(searchInput.value)
+});
 
 
 // Inicialization
