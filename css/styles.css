@@ -112,7 +112,6 @@ header {
 .note { 
     min-height: 200px;
     padding: 1rem;
-    /*transform: rotate(-4deg);*/
     border-radius: 0px 20px 0px 20px;
     background-color: #ffffcc;
     position: relative;

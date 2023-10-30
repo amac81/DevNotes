@@ -79,6 +79,7 @@ const noteElementCreate = (id, color, content, fixed = false) => {
 
     // Element Events
 
+
     //Fixed note
     elem.querySelector(".bi-pin").addEventListener("click", () => {
         toggleFixNote(id);
@@ -148,7 +149,13 @@ const changeNoteColor = (id) => {
     const allNotes = getNotes();
     const targetNote = allNotes.filter((note) => note.id === id)[0];
 
-    const availableColors = ["#f8eb75", "#c5f4fa", "#c6ff91", "#ffffcc", "#ffb3ff"];
+    const availableColors = ["#f8eb75", "#c5f4fa", "#c6ff91", "#ffffcc", "#ffb3ff", 
+                             "#FF5733", "#66CCFF", "#FF3366", "#99FF66", "#FF66CC", 
+                             "#33CCFF", "#FFFF66", "#CC66FF", "#66FFCC", "#3366FF", 
+                             "#FF9933", "#33FF66", "#CC33FF", "#66FF33", "#FF33CC", 
+                             "#33FFCC", "#CC33CC", "#9933FF", "#33CC66", "#CC9966", 
+                             "#FF0000"];
+                             
     let colorIndex = availableColors.indexOf(targetNote.color);
    
     if(colorIndex >= 0 && colorIndex < availableColors.length){
@@ -271,6 +278,11 @@ searchInput.addEventListener("keyup", (e) => {
     searchNotes(textToSeach);    
 });
 
+noteInput.addEventListener("keydown", (e)=> {
+    if(e.key === "Enter"){
+        addNote();
+    }
+});
 
 // Inicialization
 showNotes();
