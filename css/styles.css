@@ -57,19 +57,22 @@ header {
     font-size: 1rem;
 }
 
+#export-csv-btn i, #export-xml-btn i {
+    padding-left: 0.4rem;
+}
 
-#export-notes-btn, #add-note-btn {
+#export-csv-btn, #export-xml-btn, #add-note-btn {
     background-color: #fdfdfd;
     border: 1px solid #fdfdfd;
     border-radius: 4px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 0.3rem;
     color: #333;
     opacity: 1;
     transition: 0.5s;
     cursor: pointer;
 }
 
-#export-notes-btn:hover, #add-note-btn:hover { 
+#export-csv-btn:hover, #export-xml-btn:hover, #add-note-btn:hover { 
     background-color: #ccc;
     color: #fdfdfd;
     transition: 0.5s;
@@ -248,22 +251,27 @@ header {
     }
 
     #search-container i {
-        padding: 0;
+        padding-right: 1rem;
+        padding-top: 0.3rem;
         margin: 0;
     }
 
     #search-container input{
-       padding: 0.2rem;
+       margin-left: 3px;
        font-size: 0.8rem;
-       width: 100%;
+       width: 90%;
     }
 
-    #export-notes-btn{
+    #export-csv-btn, #export-xml-btn{
         font-size: 0.7rem;
         max-width: 20%;    
-        padding: 0.2rem;
         margin-top: 5px;
         margin-bottom: 5px;
+        padding: 0;
+    }
+    #export-xml-btn {
+        margin-left: 4px;
+        margin-right: 6px;
     }
 
     #notes-container {

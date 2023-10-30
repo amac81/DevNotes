@@ -1,5 +1,6 @@
 // select elements
-const exportNotesButton = document.querySelector("#export-notes-btn");
+const exportToCSVBtn = document.querySelector("#export-csv-btn");
+const exportToXMLBtn = document.querySelector("#export-xml-btn");
 const notesContainer = document.querySelector("#notes-container");
 
 const noteInput = document.querySelector("#note-content");
@@ -119,7 +120,6 @@ const noteElementCreate = (id, color, content, fixed = false) => {
     });
 
     return elem;
-    
 };
 
 const toggleFixNote = (id) => {
@@ -265,10 +265,22 @@ const saveNotes  = (notes) => {
     showNotes();
 };
 
+const exportDataToCSV = () => {
+    const allNotes = getNotes();
+
+    
+};
 
 // Events
-exportNotesButton.addEventListener("click", (e) => {
+
+exportToCSVBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    exportDataToCSV();
+});
+
+exportToXMLBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    //exportDataToXML();
 });
 
 addNoteBtn.addEventListener("click", () => addNote());
