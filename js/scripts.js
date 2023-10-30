@@ -22,7 +22,6 @@ const addNote = () => {
     showNotes();
 
     const noteElemet = noteElementCreate(noteObj.id, noteObj.color, noteObj.content, false);  
-    //notesContainer.appendChild(noteElemet); 
     noteInput.value = ""; 
 };
 
@@ -63,6 +62,11 @@ const noteElementCreate = (id, color, content, fixed = false) => {
     trashIcon.classList.add("bi","bi-trash");
     elem.appendChild(trashIcon);
 
+    const saveIcon = document.createElement("i");
+    saveIcon.classList.add(...["hide","bi","bi-save"]);
+    elem.appendChild(saveIcon);
+
+
     // Local Storage data
     if(fixed) {
         elem.classList.add("fixed")
@@ -94,6 +98,24 @@ const noteElementCreate = (id, color, content, fixed = false) => {
         duplicateNote(id);
     });
 
+
+    //Edit note content
+    elem.querySelector("textarea").addEventListener("focus", (e) => {
+        saveIcon.classList.remove("hide");
+    });
+
+    elem.querySelector("textarea").addEventListener("blur", (e) => {
+        saveIcon.classList.add("hide");
+        const noteContent = e.target.value;
+        updateNote(id, noteContent);
+    });
+    
+    elem.querySelector(".bi-save").addEventListener("click", () => {
+        saveIcon.classList.add("hide");
+        const noteContent = elem.querySelector("textarea").value;
+        updateNote(id, noteContent);
+    });
+
     return elem;
     
 };
@@ -105,6 +127,21 @@ const toggleFixNote = (id) => {
     
     saveNotes(allNotes);
 };  
+
+//https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+    const hex = x.toString(16)
+    return hex.length === 1 ? '0' + hex : hex
+  }).join('');
+
+const getElementHexBgColor = (elem) => {
+    let elemStyle = window.getComputedStyle(elem,"");
+    let bgColor = elemStyle.getPropertyValue("background-color").trim();
+    bgColor =  bgColor.replace('rgb(', '').replace(')','').split(',');
+
+    let hexBgColor = rgbToHex(parseInt(bgColor[0]), parseInt(bgColor[1]), parseInt(bgColor[2]));
+    return hexBgColor;
+}
 
 const changeNoteColor = (id) => {
     const allNotes = getNotes();
@@ -149,24 +186,15 @@ const duplicateNote = (id) => {
     saveNotes(allNotes);
 
     const noteElemet = noteElementCreate(generateId(), originalNote.color, originalNote.content, false);  
-  //  notesContainer.appendChild(noteElemet); 
 };  
 
+const updateNote = (id, newContent) => {
+    const allNotes = getNotes();
+    const targetNote = allNotes.filter((note) => note.id === id)[0];
+    targetNote.content = newContent;
 
-//https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
-    const hex = x.toString(16)
-    return hex.length === 1 ? '0' + hex : hex
-  }).join('');
-
-const getElementHexBgColor = (elem) => {
-    let elemStyle = window.getComputedStyle(elem,"");
-    let bgColor = elemStyle.getPropertyValue("background-color").trim();
-    bgColor =  bgColor.replace('rgb(', '').replace(')','').split(',');
-
-    let hexBgColor = rgbToHex(parseInt(bgColor[0]), parseInt(bgColor[1]), parseInt(bgColor[2]));
-    return hexBgColor;
-}
+    saveNotes(allNotes);   
+};
 
 
 const cleanNotesContainer = () => {
@@ -210,7 +238,7 @@ const saveNotes  = (notes) => {
    
  };
 
-// Eventos
+// Events
 exportNotesButton.addEventListener("click", (e) => {
     e.preventDefault();
 });
@@ -220,3 +248,5 @@ addNoteBtn.addEventListener("click", () => addNote());
 
 // Inicialization
 showNotes();
+
+

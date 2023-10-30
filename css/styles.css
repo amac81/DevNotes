@@ -15,6 +15,9 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+.hide {
+    display: none;
+}
 
 /* Header */
 
@@ -119,6 +122,21 @@ header {
     width: 90%;    
     outline: none;
 }
+
+.note .bi-save {
+    position: absolute;
+    right: 14px;
+    font-size: 16px;
+    top: 40px;
+    transition: 0.3s;  
+    cursor: pointer;
+} 
+
+.note .bi-save:hover {
+    transition: 0.3s;  
+    font-size: 18px;
+    transform: rotate(-25deg);  
+} 
 
 .note .bi-pin {
     position: absolute;
