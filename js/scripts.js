@@ -348,5 +348,3 @@ noteInput.addEventListener("keydown", (e)=> {
 
 // Inicialization
 showNotes();
-
-

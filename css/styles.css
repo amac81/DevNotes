@@ -121,8 +121,12 @@ header {
 #notes-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, 230px);
-    padding: 2rem;
-    gap: 2rem;
+    padding-left: 2.3%;
+    padding-right: 0%;
+    padding-top: 1.8rem;
+    padding-bottom: 1%;
+    gap: 2.5%;
+    margin-left: 0%;
 }
 
 .note { 
@@ -227,9 +231,58 @@ header {
 }
 
 
-/* Mobile */
+/* responsiveness */
 
-@media (max-width: 480px) {
+@media (max-width: 742px) {
+    #notes-container {
+        padding-left: 10%;
+        gap: 10%;
+    }
+
+    #search-container input{
+        width: 98%;
+    }
+}
+
+@media (max-width: 716px) {
+    #notes-container {
+        padding-left: 7%;
+        gap: 5%;
+    } 
+}
+
+@media (max-width: 533px) {
+    #notes-container {
+        padding-left: 5%;
+        gap: 2%;
+    }
+
+    header {
+        padding: 0.5rem;
+    }
+
+    header h1{
+        font-size: 25px;
+        padding-right: 1rem;
+    }
+
+    #export-csv-btn, #export-xml-btn {
+        font-size: 10px;
+        padding: 0.3rem;
+    }
+
+    #search-container  i {
+        font-size: 12px;    
+    }
+
+    #search-container input{
+        width: 97%;
+        padding: 0.2rem;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 450px) {
 
     header {
         padding: 0;
@@ -297,16 +350,4 @@ header {
         margin-bottom: 1.5rem;
     }
     
-}
-
-@media (max-width: 500px) {       
-  
-}
-
-@media (max-width: 780px) {       
- 
-}
-
-@media (max-width: 968px) {       
-   
 }
