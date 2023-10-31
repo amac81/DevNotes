@@ -92,7 +92,10 @@ const noteElementCreate = (id, color, content, fixed = false) => {
     });
 
     //Delete note
+
     elem.querySelector(".bi-trash").addEventListener("click", () => {
+        console.log("DELETE")
+        
         deleteNote(id, elem);
     });
 
