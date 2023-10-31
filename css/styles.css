@@ -233,9 +233,9 @@ header {
 
 /* responsiveness */
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (max-width: 780px) {
     #search-container input{
-        max-width: 85%;
+        max-width: 95%;
     } 
     
     header h1 {
@@ -243,7 +243,7 @@ header {
     }
 
     #search-container i{
-        margin-right: 3rem;
+        margin-right: 1rem;
     } 
 }
 
