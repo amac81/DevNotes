@@ -49,23 +49,23 @@ const noteElementCreate = (id, color, content, fixed = false) => {
 
     //icons
     const pinIcon = document.createElement("i");
-    pinIcon.classList.add("bi", "bi-pin");
+    pinIcon.classList.add(...["bi","bi-pin"]);
     elem.appendChild(pinIcon);
 
     const paletteIcon = document.createElement("i");
-    paletteIcon.classList.add("bi","bi-palette");
+    paletteIcon.classList.add(...["bi","bi-palette"]);
     elem.appendChild(paletteIcon);
 
     const fileEarmarkPlusIcon = document.createElement("i");
-    fileEarmarkPlusIcon.classList.add("bi", "bi-file-earmark-plus");
+    fileEarmarkPlusIcon.classList.add(...["bi","bi-file-earmark-plus"]);
     elem.appendChild(fileEarmarkPlusIcon);
     
     const trashIcon = document.createElement("i");
-    trashIcon.classList.add("bi", "bi-trash");
+    trashIcon.classList.add(...["bi","bi-trash"]);
     elem.appendChild(trashIcon);
 
     const saveIcon = document.createElement("i");
-    saveIcon.classList.add("hide", "bi", "bi-save");
+    saveIcon.classList.add(...["hide","bi","bi-save"]);
     elem.appendChild(saveIcon);
 
 
@@ -92,7 +92,6 @@ const noteElementCreate = (id, color, content, fixed = false) => {
     });
 
     //Delete note
-
     elem.querySelector(".bi-trash").addEventListener("click", () => {
         deleteNote(id, elem);
     });
@@ -173,7 +172,7 @@ const changeNoteColor = (id) => {
 
 const deleteNote = (id, elem) => {
     const notesToKeep = getNotes().filter((note) => note.id != id);
-   
+    
     //remove from DOM
     notesContainer.removeChild(elem);
 
@@ -349,11 +348,3 @@ noteInput.addEventListener("keydown", (e)=> {
 
 // Inicialization
 showNotes();
-
-
-document.addEventListener("click", (e) => {
-    
-    
-    
-    console.log(e.target)
-}) 
