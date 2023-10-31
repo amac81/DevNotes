@@ -64,7 +64,7 @@ header {
     border: none;
     padding: 0.5rem;
     color: #333;
-    width: 20rem;
+    max-width: 100%;
     font-size: 1rem;
 }
 
@@ -233,7 +233,7 @@ header {
 
 /* responsiveness */
 
-@media (max-width: 780px) {
+@media (max-width: 705px) {
     #search-container input{
         max-width: 95%;
     } 
