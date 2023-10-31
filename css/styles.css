@@ -30,10 +30,8 @@ header {
     color: #fdfdfd;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    max-height: 5rem;
-    position:fixed;
-    overflow-y:scroll;
+    justify-content: space-around;    
+    position:fixed;    
     z-index: 1;       
     width: 100%;
 }
@@ -233,6 +231,10 @@ header {
 
 /* responsiveness */
 
+
+
+
+/*
 @media (max-width: 770px) {
     header {
         width: 60%;
@@ -318,7 +320,6 @@ header {
         width: 100%;
         display: flex;
         position:fixed;
-        overflow-y:scroll;
         min-height: 40px;
         z-index: 1;       
     }
@@ -408,3 +409,5 @@ header {
        
     }
 } 
+
+*/
