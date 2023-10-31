@@ -7,6 +7,10 @@ const noteInput = document.querySelector("#note-content");
 const searchInput = document.querySelector("#search-input");
 const addNoteBtn = document.querySelector("#add-note-btn");
 
+const wresolution = document.querySelector("#wresolution");
+const hresolution = document.querySelector("#hresolution");
+
+
 // functions
 const addNote = () => {
     const notes = getNotes();
@@ -211,7 +215,6 @@ const cleanNotesContainer = () => {
 // Local Storage
 
 const showNotes  = ()=> {
-
     cleanNotesContainer();
     const allNotes = getNotes();
 
@@ -318,8 +321,13 @@ function exportDataToXML() {
     const xmlString = serializer.serializeToString(xmlDoc);
 
     createDummyLink("xml", xmlString);   
-  }
+ }
 
+
+const showResolution = () => {
+    wresolution.innerText = `W: ${window.innerWidth}`; 
+    hresolution.innerText = `H: ${window.innerHeight}`;  
+};
 
 // Events
 
@@ -348,3 +356,10 @@ noteInput.addEventListener("keydown", (e)=> {
 
 // Inicialization
 showNotes();
+
+showResolution();
+
+
+window.addEventListener("resize", ()=>{
+    showResolution();
+})
