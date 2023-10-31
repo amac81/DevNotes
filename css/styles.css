@@ -24,12 +24,18 @@ textarea:focus, input:focus{
 header {
     border-bottom: 3px solid #070606;
     border-top: 3px solid #070606;
+    margin-top: -20px !important;
     background-color:#ccc;
     padding: 1rem 2rem;
     color: #fdfdfd;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-height: 5rem;
+    position:fixed;
+    overflow-y:scroll;
+    z-index: 1;       
     width: 100%;
-    gap: 1rem;    
 }
 
 #search-container {
@@ -59,15 +65,11 @@ header {
     padding: 0.5rem;
     color: #333;
     width: 20rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 #export-csv-btn i, #export-xml-btn i {
     padding-left: 0.4rem;
-}
-
-#export-csv-btn, #export-xml-btn {
-    font-size: 0.7rem;
 }
 
 #export-csv-btn, #export-xml-btn, #add-note-btn {
@@ -95,6 +97,8 @@ header {
     width: 30rem;
     margin: 1rem auto 0;
     gap: 0.5rem;
+    margin-top: 20px;
+    padding-top: 5rem;
 }
 
 #add-note-container input,
@@ -229,28 +233,178 @@ header {
 
 /* responsiveness */
 
-/* mobile devices */
-
-@media (max-width: 450px) {
+@media (max-width: 770px) {
     header {
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;   
-        padding: 2rem;        
+        width: 60%;
+        padding-left: 0;
+        display: flex;
     }
 
-    #search-container, #export-container {
-        width: 100%;        
+    header h1{
+       font-size: 20px;
+     
+    }
+
+    #search-container input {
+        max-width: 50%;
+    }
+
+    #search-container i {
+       padding-right: 120px;
+    }
+
+    #export-container {
+        padding: 0;
+        margin: 0;
+    }
+  
+}
+
+@media (max-width: 742px) {
+    #notes-container {
+        padding-left: 10%;
+        gap: 10%;
+    }
+
+    #search-container input{
+        width: 98%;
+    }
+}
+
+@media (max-width: 716px) {
+    #notes-container {
+        padding-left: 7%;
+        gap: 5%;
+    }
+ 
+}
+
+@media (max-width: 533px) {
+    #notes-container {
+        padding-left: 5%;
+        gap: 2%;
+    }
+
+    header {
+        padding: 0.5rem;
+    }
+
+    header h1{
+        font-size: 22px;
+        padding-right: 1rem;
+    }
+
+    #export-csv-btn, #export-xml-btn {
+        font-size:1px;
+        padding: 1.3rem;
+    }
+
+    #search-container  i {
+        font-size: 12px; 
+    }
+
+    #search-container input{
+        width: 100%;
+        padding: 0.2rem;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    header {
+        padding: 0;
+        margin-top: -20px !important;
+        width: 100%;
+        display: flex;
+        position:fixed;
+        overflow-y:scroll;
+        min-height: 40px;
+        z-index: 1;       
+    }
+
+    h1 {
+        font-size: 1rem;
+        padding-left: 5px;
     }
 
     #add-note-container {
-        width: 100%;
-        padding: 0.5rem;
+        width: auto;
+        padding: 1rem;
+        padding-top: 3rem;
+        margin-top: 20px;
+    }
+
+    #search-container{
+       max-width: 63%;
+    }
+
+    .bi-search {
+        top: 10%;
+        right: 0.5rem;            
+    }
+
+    #search-container i {
+        padding-right: 1rem;
+        padding-top: 0.3rem;
+        margin: 0;
+    }
+
+    #search-container input{
+       margin-left: 3px;
+       font-size: 0.8rem;
+       width: 90%;
+    }
+
+    #export-csv-btn, #export-xml-btn{
+        font-size: 0.7rem;
+        max-width: 20%;    
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 0;
+    }
+    #export-xml-btn {
+        margin-left: 4px;
+        margin-right: 6px;
     }
 
     #notes-container {
-        grid-template-columns: repeat(auto-fill, 100%);
-        gap: 1.5rem;
-        padding: 0.5rem;
+        width: 100%;
+        display:block;
+        padding:1rem;
+    }
+
+    .note {
+        margin-bottom: 1.5rem;
     }
 }
+
+@media (max-width: 400px){
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    #export-container {
+        gap: 0;
+    }
+
+    #search-container {
+        width: 100%;
+    }
+
+    #search-container i {
+       padding-top:0.2rem;
+       padding-right: 0.5rem;
+    }
+
+    #export-csv-btn, #export-xml-btn  {
+        min-width: 3.5rem;
+        font-size: 9px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top:2px;
+        padding-bottom:2px;
+       
+    }
+} 
