@@ -235,8 +235,12 @@ header {
 
 @media (min-width: 769px) and (max-width: 1024px) {
     #search-container input{
-        max-width: 90%;
+        max-width: 85%;
     } 
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
 
     #search-container i{
         margin-right: 3rem;
