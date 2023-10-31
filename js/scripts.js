@@ -357,9 +357,11 @@ noteInput.addEventListener("keydown", (e)=> {
 // Inicialization
 showNotes();
 
+/*
 showResolution();
-
 
 window.addEventListener("resize", ()=>{
     showResolution();
 })
+
+*/
