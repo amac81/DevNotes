@@ -233,94 +233,16 @@ header {
 
 /* responsiveness */
 
-@media (max-width: 770px) {
-    header {
-        width: 60%;
-        padding-left: 0;
-        display: flex;
-    }
-
-    header h1{
-       font-size: 20px;
-     
-    }
-
-    #search-container input {
-        max-width: 50%;
-    }
-
-    #search-container i {
-       padding-right: 120px;
-    }
-
-    #export-container {
-        padding: 0;
-        margin: 0;
-    }
-  
-}
-
-@media (max-width: 742px) {
-    #notes-container {
-        padding-left: 10%;
-        gap: 10%;
-    }
-
-    #search-container input{
-        width: 98%;
-    }
-}
-
-@media (max-width: 716px) {
-    #notes-container {
-        padding-left: 7%;
-        gap: 5%;
-    }
- 
-}
-
-@media (max-width: 533px) {
-    #notes-container {
-        padding-left: 5%;
-        gap: 2%;
-    }
-
-    header {
-        padding: 0.5rem;
-    }
-
-    header h1{
-        font-size: 22px;
-        padding-right: 1rem;
-    }
-
-    #export-csv-btn, #export-xml-btn {
-        font-size:1px;
-        padding: 1.3rem;
-    }
-
-    #search-container  i {
-        font-size: 12px; 
-    }
-
-    #search-container input{
-        width: 100%;
-        padding: 0.2rem;
-        font-size: 14px;
-    }
-}
 
 @media (max-width: 450px) {
 
     header {
         padding: 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
         margin-top: -20px !important;
         width: 100%;
-        display: flex;
-        position:fixed;
-        overflow-y:scroll;
-        min-height: 40px;
-        z-index: 1;       
+        display: flex;        
     }
 
     h1 {
@@ -354,15 +276,9 @@ header {
        margin-left: 3px;
        font-size: 0.8rem;
        width: 90%;
+       padding: 0.3rem;
     }
 
-    #export-csv-btn, #export-xml-btn{
-        font-size: 0.7rem;
-        max-width: 20%;    
-        margin-top: 5px;
-        margin-bottom: 5px;
-        padding: 0;
-    }
     #export-xml-btn {
         margin-left: 4px;
         margin-right: 6px;
@@ -377,26 +293,6 @@ header {
     .note {
         margin-bottom: 1.5rem;
     }
-}
-
-@media (max-width: 400px){
-
-    header h1 {
-        font-size: 19px;
-    }
-
-    #export-container {
-        gap: 0;
-    }
-
-    #search-container {
-        width: 100%;
-    }
-
-    #search-container i {
-       padding-top:0.2rem;
-       padding-right: 0.5rem;
-    }
 
     #export-csv-btn, #export-xml-btn  {
         min-width: 3.5rem;
@@ -405,6 +301,5 @@ header {
         padding-right: 10px;
         padding-top:2px;
         padding-bottom:2px;
-       
     }
 } 
